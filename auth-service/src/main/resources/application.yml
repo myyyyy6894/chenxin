@@ -1,2 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false   # 关闭强制检查
+  datasource:
+    url: jdbc:mysql://localhost:3306/chengxin_db?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Ljs061125@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 server:
   port: 8001
+
+
