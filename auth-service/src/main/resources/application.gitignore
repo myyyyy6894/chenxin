@@ -1,0 +1,2 @@
+# 忽略配置文件，禁止提交
+src/main/resources/application.yml

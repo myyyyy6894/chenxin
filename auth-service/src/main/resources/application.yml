@@ -4,13 +4,23 @@ spring:
       config:
         import-check:
           enabled: false   # 关闭强制检查
+  #数据库配置
   datasource:
     url: jdbc:mysql://localhost:3306/chengxin_db?useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: Ljs061125@
     driver-class-name: com.mysql.cj.jdbc.Driver
+# MyBatis-Plus 配置
+mybatis-plus:
+  # 开启SQL日志打印（方便你看执行的sql）
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 全局主键自增适配
+  global-config:
+    db-config:
+      id-type: auto
 
 server:
-  port: 8001
+  port: 8081
 
 
