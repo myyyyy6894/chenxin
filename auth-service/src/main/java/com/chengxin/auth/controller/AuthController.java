@@ -1,14 +1,13 @@
 package com.chengxin.auth.controller;
 
+import com.chengxin.auth.common.JwtUtil;
 import com.chengxin.auth.common.Result;
 import com.chengxin.auth.dto.LoginDTO;
 import com.chengxin.auth.dto.RegisterDTO;
 import com.chengxin.auth.service.UserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -61,6 +60,19 @@ public class AuthController {
         return Result.success(token);
     }
 
+    @GetMapping("/me")
+    public Result<?> me(
+            // 从请求头里拿到 Authorization = Bearer xxxxx(token)
+            @RequestHeader("Authorization")  String token) {
 
+        // 把前面的 "Bearer " 去掉，只留下真正的 Token
+        token = token.replace("Bearer ","");
+
+        // 用 JwtUtil 解析 Token，拿到里面的 用户ID、用户名
+        Claims claims = JwtUtil.parseToken(token);
+
+        // 返回解析出来的用户信息给前端
+        return Result.success(claims);
+    }
 
 }
