@@ -1,5 +1,7 @@
 package com.chengxin.auth.controller;
 
+import com.chengxin.auth.common.Result;
+import com.chengxin.auth.dto.LoginDTO;
 import com.chengxin.auth.dto.RegisterDTO;
 import com.chengxin.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 3. 专门用来接收前端发送的 HTTP 请求
  */
 @RestController
+
 /**
  * @RequestMapping("/auth")
  * 作用：给这个类统一加一个访问前缀
@@ -40,24 +43,24 @@ public class AuthController {
      * 1. 接收 POST 请求
      * 2. 访问路径：/auth/register
      * 这就是【用户注册接口】
-     *
      * 前端调用方式：POST http://localhost:端口/auth/register
      */
     @PostMapping("/register")
-    public String register(
-            /*
-             * @RequestBody
-             * 作用：接收前端传来的 JSON 数据
-             * 自动封装成 RegisterDTO 对象
-             * 前端传：username、password、nickname
-             */
-            @RequestBody RegisterDTO dto){
-
-        // 调用 Service 层，执行注册业务
-        userService.register(dto);
-
-        return "注册成功";
+    public Result<?> register(@RequestBody RegisterDTO dto) {
+        try {
+            userService.register(dto);
+            return Result.success("注册成功");
+        } catch (Exception e) {
+            return Result.fail(e.getMessage());
+        }
     }
+
+    @PostMapping("/login")
+    public Result<String> login(@RequestBody LoginDTO dto) {
+        String token = userService.login(dto);
+        return Result.success(token);
+    }
+
 
 
 }

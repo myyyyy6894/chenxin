@@ -19,7 +19,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // 全新写法！Spring Boot 4.x 必须这样写！
         http
                 .csrf(csrf -> csrf.disable())   // 正确关闭 CSRF（Lambda 风格）
                 .authorizeHttpRequests(auth -> auth
