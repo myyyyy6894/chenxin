@@ -1,13 +1,16 @@
 package com.chengxin.auth.controller;
 
-import com.chengxin.auth.common.JwtUtil;
 import com.chengxin.auth.common.Result;
+import com.chengxin.auth.common.UserContext;
 import com.chengxin.auth.dto.LoginDTO;
 import com.chengxin.auth.dto.RegisterDTO;
 import com.chengxin.auth.service.UserService;
-import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+
 
 
 /**
@@ -60,19 +63,38 @@ public class AuthController {
         return Result.success(token);
     }
 
+//    @GetMapping("/me")
+//    public Result<?> me(
+//            // 从请求头里拿到 Authorization = Bearer xxxxx(token)
+//            @RequestHeader("Authorization")  String token) {
+//
+//        // 把前面的 "Bearer " 去掉，只留下真正的 Token
+//        token = token.replace("Bearer ","");
+//
+//        // 用 JwtUtil 解析 Token，拿到里面的 用户ID、用户名
+//        Claims claims = JwtUtil.parseToken(token);
+//
+//        // 返回解析出来的用户信息给前端
+//        return Result.success(claims);
+//    }
+
+    //改写/auth/me
     @GetMapping("/me")
-    public Result<?> me(
-            // 从请求头里拿到 Authorization = Bearer xxxxx(token)
-            @RequestHeader("Authorization")  String token) {
+    public Result<?> me(HttpServletRequest request) {
 
-        // 把前面的 "Bearer " 去掉，只留下真正的 Token
-        token = token.replace("Bearer ","");
+        // 从request中取出拦截器存放的用户信息
+        //这里用上下文取用户id
+        String userId = UserContext.getUserId();
+//      Long userId = (Long) request.getAttribute("userId");
+        String username = (String) request.getAttribute("username");
 
-        // 用 JwtUtil 解析 Token，拿到里面的 用户ID、用户名
-        Claims claims = JwtUtil.parseToken(token);
+        // 组装成前端友好的格式返回
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("username", username);
 
-        // 返回解析出来的用户信息给前端
-        return Result.success(claims);
+        return Result.success(map);
     }
+
 
 }
