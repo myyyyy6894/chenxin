@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="chengxin_db@localhost" uuid="efa32ecf-1545-4cd1-bc35-84b05e9e50ad">
+    <data-source source="LOCAL" name="chengxin_db@localhost" uuid="c7176948-285e-4793-b947-e3bbe81c5fe1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

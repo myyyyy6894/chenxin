@@ -13,9 +13,10 @@
     <modules>
         <module>common</module>
         <module>auth-service</module>
-        <module>user-service</module>
         <module>chat-service</module>
         <module>admin-service</module>
+        <module>user-service</module>
+
     </modules>
 
     <!-- Spring Boot 3.1.5 父依赖 (稳定版本，兼容 MyBatis) -->
@@ -72,7 +73,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            
+
             <!-- MyBatis Spring (Spring Boot 3.x 必须使用 3.x 版本) -->
             <dependency>
                 <groupId>org.mybatis</groupId>
