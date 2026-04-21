@@ -1,6 +1,5 @@
 # 服务基础配置
 server:
-  # 端口，不和auth-service冲突
   port: 8082
   servlet:
     context-path: /
@@ -9,7 +8,14 @@ server:
 spring:
   application:
     name: user-service
-  # 数据库配置 直接连接 chengxin_db
+  # cloud 必须和 application 平级！！！
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+
+  # 数据库配置
   datasource:
     url: jdbc:mysql://localhost:3306/chengxin_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
@@ -18,20 +24,17 @@ spring:
 
 # MyBatis-Plus 配置
 mybatis-plus:
-  # 开启驼峰命名自动转换（user_name → userName）
   configuration:
     map-underscore-to-camel-case: true
-  #  mapperxml文件位置（后续如果写xmlsql用到）
   mapper-locations: classpath:mapper/*.xml
-  # 逻辑删除、主键策略全局默认
   global-config:
     db-config:
       id-type: auto
       logic-delete-field: deleted
       logic-delete-value: 1
-      logic-delete-no-value: 0
+      logic-not-delete-value: 0  # 这里你拼错了！
 
-# 日志（可选，方便看sql）
+# 日志
 logging:
   level:
     com.chengxin.user.mapper: debug

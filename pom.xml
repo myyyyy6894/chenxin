@@ -19,11 +19,11 @@
 
     </modules>
 
-    <!-- Spring Boot 3.1.5 父依赖 (稳定版本，兼容 MyBatis) -->
+    <!-- Spring Boot 3.2.5 父依赖 (稳定版本，兼容 MyBatis) -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.5</version>
+        <version>3.2.5</version>
         <relativePath/>
     </parent>
 
@@ -35,27 +35,27 @@
         <maven.compiler.release>21</maven.compiler.release>
 
         <!-- 你指定的版本 -->
-        <spring.cloud.version>2025.1.0</spring.cloud.version>
-        <spring.cloud.alibaba.version>2025.1.0.0</spring.cloud.alibaba.version>
+        <spring.cloud.version>2023.0.3</spring.cloud.version>
+        <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
     </properties>
 
     <!-- 全局依赖管理（所有子模块不用写版本号） -->
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Cloud 2025.1.0 -->
+            <!-- Spring Cloud  -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>2023.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!-- Spring Cloud Alibaba 2025.1.0.0 -->
+            <!-- Spring Cloud Alibaba  -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>2023.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -65,13 +65,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>3.5.8</version>
-                <exclusions>
-                    <!-- 排除旧版 mybatis-spring -->
-                    <exclusion>
-                        <groupId>org.mybatis</groupId>
-                        <artifactId>mybatis-spring</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- MyBatis Spring (Spring Boot 3.x 必须使用 3.x 版本) -->

@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: auth-service
-
-#暂时没有nacos 先注释了跑通服务
