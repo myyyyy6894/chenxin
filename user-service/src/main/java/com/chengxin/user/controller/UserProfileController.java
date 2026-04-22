@@ -15,7 +15,7 @@ public class UserProfileController {
 
     // 获取当前用户资料
     @GetMapping("/info")
-    public Result<UserProfile> getUserProfile(@RequestParam Long userId) {
+    public Result<UserProfile> getUserProfile(@RequestHeader("X-User-Id") Long userId) {
         // 注意：这里的 userId 未来在引入微服务网关后，会通过解析 JWT 直接从请求头里拿
         // 今天我们先用参数传进来测试
         UserProfile profile = userProfileService.getProfileByUserId(userId);

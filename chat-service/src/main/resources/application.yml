@@ -1,10 +1,42 @@
+server:
+  # 给chat单独端口，避免冲突
+  port: 8083
+
 spring:
   application:
-    name: chat-service  # only change here
+    # Nacos 服务名，必须唯一
+    name: chat-service
+
+  # 数据库配置（和user、auth保持一致）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chengxin_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: Ljs061125@
+
+  # Nacos 配置
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+      # 关闭配置中心，防止Nacos没开启动报错
       config:
-        server-addr: 127.0.0.1:8848
-        file-extension: yaml
+        enabled: true
+        import-check:
+          enabled: false
+
+# MyBatis-Plus 统一配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+
+# 日志
+logging:
+  level:
+    com.chengxin: debug

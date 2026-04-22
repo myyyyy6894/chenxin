@@ -1,10 +1,10 @@
-package com.chengxin.chatservice;
+package com.chengxin.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ChatServiceApplicationTests {
+class GatewayServiceApplicationTests {
 
     @Test
     void contextLoads() {

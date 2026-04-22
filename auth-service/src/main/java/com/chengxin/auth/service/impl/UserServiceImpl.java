@@ -1,7 +1,7 @@
 package com.chengxin.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chengxin.auth.common.JwtUtil;
+import com.chengxin.common.util.JwtUtil;
 import com.chengxin.auth.dto.LoginDTO;
 import com.chengxin.auth.dto.RegisterDTO;
 import com.chengxin.auth.entity.User;

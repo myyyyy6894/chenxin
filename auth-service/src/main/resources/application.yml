@@ -6,6 +6,9 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848  # Nacos 地址
         enabled: true                # 开启服务注册
+      config:
+        import-check:
+          enabled: false
   #数据库配置
   datasource:
     url: jdbc:mysql://localhost:3306/chengxin_db?useSSL=false&serverTimezone=Asia/Shanghai

@@ -1,6 +1,6 @@
 package com.chengxin.auth.interceptor;
 
-import com.chengxin.auth.common.JwtUtil;
+import com.chengxin.common.util.JwtUtil;
 import com.chengxin.auth.common.UserContext;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;

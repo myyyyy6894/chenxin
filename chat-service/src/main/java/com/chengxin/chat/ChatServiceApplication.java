@@ -1,15 +1,18 @@
-package com.chengxin.gatewayservice;
+package com.chengxin.chat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GatewayServiceApplication {
+@EnableFeignClients
+
+public class ChatServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayServiceApplication.class, args);
+        SpringApplication.run(ChatServiceApplication.class, args);
     }
 
 }
