@@ -24,6 +24,14 @@ spring:
         enabled: true
         import-check:
           enabled: false
+  #redis配置
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0 # 默认使用0号库
+
+
 
 # MyBatis-Plus 统一配置
 mybatis-plus:

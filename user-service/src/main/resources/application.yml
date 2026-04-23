@@ -37,7 +37,7 @@ mybatis-plus:
       id-type: auto
       logic-delete-field: deleted
       logic-delete-value: 1
-      logic-not-delete-value: 0  # 这里你拼错了！
+      logic-not-delete-value: 0
 
 # 日志
 logging:

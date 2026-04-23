@@ -55,6 +55,14 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!-- 网关必须依赖：解决 200 但返回空数据、无响应体问题 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+
+
 
     </dependencies>
 </project>

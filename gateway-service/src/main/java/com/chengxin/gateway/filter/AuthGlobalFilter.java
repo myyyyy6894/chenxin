@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     //定义不需要拦截的白名单路径
-    private static final String[] WHITE_LIST = {"/api/auth/login","/api/auth/register"};
+    private static final String[] WHITE_LIST = {"/api/auth/login","/api/auth/register",};
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain){
@@ -29,12 +29,26 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             }
         }
 
-        //2.获取请求头中的token
+        // 2. 获取请求头中的 token
         String token = request.getHeaders().getFirst("Authorization");
         if(token == null || token.isEmpty()){
-            exchange.getResponse().setComplete();
-            return exchange.getResponse().setComplete(); //拦截并返回401
+            // ✅ 正确做法：先设置 401 状态码，再结束响应
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         }
+
+        // 💡 进阶防坑提示：通常前端传来的 Token 会带有 "Bearer " 前缀
+        // 最好在这里做个容错处理，防止 JwtUtil 解析报错进入 catch 块
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7); // 截取掉 "Bearer " 前缀
+        }
+
+//        //2.获取请求头中的token
+//        String token = request.getHeaders().getFirst("Authorization");
+//        if(token == null || token.isEmpty()){
+//            exchange.getResponse().setComplete();
+//            return exchange.getResponse().setComplete(); //拦截并返回401
+//        }
 
         try {
             // 3. 解析 Token (这里你需要把你 auth 服务里的 JwtUtil 拷过来，或者抽离成公共模块)

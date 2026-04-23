@@ -7,6 +7,8 @@ spring:
   cloud:
     nacos:
       discovery:
+        locator:
+          enabled: true  # 关键！开启动态服务发现
         server-addr: 127.0.0.1:8848
       config:
         import-check:
@@ -26,6 +28,7 @@ spring:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
+
         - id: chat_route
           uri: lb://chat-service
           predicates:
