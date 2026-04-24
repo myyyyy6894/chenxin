@@ -1,6 +1,6 @@
 package com.chengxin.user.controller;
 
-import com.chengxin.user.common.Result;
+import com.chengxin.common.Result;
 import com.chengxin.user.entity.UserProfile;
 import com.chengxin.user.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -7,6 +7,7 @@ import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import com.chengxin.chat.service.ChatAsyncService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,11 +33,15 @@ public class ChatServiceImpl {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private ChatAsyncService chatAsyncService;
+
     // ====================== 大模型接口配置 ======================
 
     // 这里以目前兼容性最好的 OpenAI 接口格式为例（国内的大模型API基本都兼容此格式）
     private static final String LLM_API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
     private static final String API_KEY = "411dab5ef98249c7bf60b8f039e3c5cb.hQWPpIZl0HuJ6e24";
+
 
 
     // ====================== 核心对话方法 ======================
@@ -88,9 +93,19 @@ public class ChatServiceImpl {
              * 作用：告诉AI你是【心理咨询师】，不是普通聊天机器人
              * 这就是你的【澄心】数字伙伴灵魂！
              */
+
+            // 之前是纯文本提示，现在我们要把它改成强制输出 JSON 格式
+            String systemPrompt = "你是一个名叫'澄心'的大学心理健康数字伙伴。请用温暖、共情、不评判的语气回答学生的问题。" +
+                    "【重要指令】你必须严格以 JSON 格式输出你的回答，绝对不能包含任何其他多余的字符（不要使用Markdown代码块）。" +
+                    "JSON的格式要求如下：\n" +
+                    "{\n" +
+                    "  \"reply\": \"这里写你对学生说的共情回复内容\",\n" +
+                    "  \"riskLevel\": \"LOW或MEDIUM或HIGH，根据学生的话评估自杀、抑郁等风险等级\",\n" +
+                    "  \"tags\": [\"学业压力\", \"人际关系\", \"焦虑\"等不超过3个情绪标签]\n" +
+                    "}";
             JSONObject systemMsg = new JSONObject();
             systemMsg.put("role", "system");
-            systemMsg.put("content", "你是一个名叫'澄心'的大学心理健康数字伙伴。请用温暖、共情、不评判的语气回答学生的问题。如果感知到高危风险（如自杀倾向），请立即建议寻求人工辅导员帮助。");
+            systemMsg.put("content", "systemPrompt");
             messages.add(systemMsg);
         } else {
 
@@ -133,11 +148,17 @@ public class ChatServiceImpl {
         String assistantReply = responseObj.getJSONArray("choices")
                 .getJSONObject(0).getJSONObject("message").getString("content");
 
+        //(1).解析大模型返回的特定JSON结构
+        JSONObject aiAnalysisResult = JSON.parseObject(assistantReply);
+        String actualReply = aiAnalysisResult.getString("replay");
+        String riskLevel = aiAnalysisResult.getString("riskLevel");
+        JSONArray tags = aiAnalysisResult.getJSONArray("tags");
+
 
         // ====================== 8. 把AI的回答也存入对话历史 ======================
         JSONObject newAssistantMsg = new JSONObject();
         newAssistantMsg.put("role", "assistant");
-        newAssistantMsg.put("content", assistantReply);
+        newAssistantMsg.put("content", actualReply);
         messages.add(newAssistantMsg);
 
         // ====================== 9. 把【最新完整对话】存回Redis ======================
@@ -145,8 +166,12 @@ public class ChatServiceImpl {
          * set( key, 值, 过期时间, 时间单位 )
          * 这里设置：30分钟后对话失效（超过30分钟不聊，视为新会话）
          */
+        chatAsyncService.saveChatRecordAndRisk(userId,
+                userMessage,
+                actualReply,
+                riskLevel);
         redisTemplate.opsForValue().set(redisKey, messages.toJSONString(), 30, TimeUnit.MINUTES);
 
-        return assistantReply;
+        return actualReply;
     }
 }

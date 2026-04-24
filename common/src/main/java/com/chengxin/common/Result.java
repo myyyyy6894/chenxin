@@ -1,4 +1,4 @@
-package com.chengxin.user.common;
+package com.chengxin.common;
 
 
 import lombok.Data;
