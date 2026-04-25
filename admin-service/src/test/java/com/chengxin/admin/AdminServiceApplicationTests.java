@@ -1,4 +1,4 @@
-package com.chengxin.adminservice;
+package com.chengxin.admin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

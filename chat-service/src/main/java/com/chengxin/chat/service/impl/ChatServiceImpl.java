@@ -96,7 +96,7 @@ public class ChatServiceImpl {
 
             // 之前是纯文本提示，现在我们要把它改成强制输出 JSON 格式
             String systemPrompt = "你是一个名叫'澄心'的大学心理健康数字伙伴。请用温暖、共情、不评判的语气回答学生的问题。" +
-                    "【重要指令】你必须严格以 JSON 格式输出你的回答，绝对不能包含任何其他多余的字符（不要使用Markdown代码块）。" +
+                    "【【最高指令】你是一个API接口，请不要输出任何额外的问候语或解释！你只能、必须、绝对只返回一个合法的JSON对象。如果用户情绪极其崩溃，请将共情的话写在JSON的reply字段中。" +
                     "JSON的格式要求如下：\n" +
                     "{\n" +
                     "  \"reply\": \"这里写你对学生说的共情回复内容\",\n" +
@@ -148,11 +148,45 @@ public class ChatServiceImpl {
         String assistantReply = responseObj.getJSONArray("choices")
                 .getJSONObject(0).getJSONObject("message").getString("content");
 
-        //(1).解析大模型返回的特定JSON结构
-        JSONObject aiAnalysisResult = JSON.parseObject(assistantReply);
-        String actualReply = aiAnalysisResult.getString("replay");
-        String riskLevel = aiAnalysisResult.getString("riskLevel");
-        JSONArray tags = aiAnalysisResult.getJSONArray("tags");
+        // ======= 核心防御性编程开始 =======
+        JSONObject assistantReplyStr = new JSONObject();
+        String actualReply = "";
+        String riskLevel = "LOW"; // 默认低风险
+        JSONArray tags = new JSONArray();
+
+        try {
+            // 1. 清理大模型可能带上的 Markdown 标记 (比如 ```json ... ```)
+            String cleanStr = assistantReply.replaceAll("```json", "").replaceAll("```", "").trim();
+
+            // 2. 截取第一个 { 和最后一个 } 之间的内容
+            int startIndex = cleanStr.indexOf("{");
+            int endIndex = cleanStr.lastIndexOf("}");
+
+            // 判断：必须同时找到 { 和 }，并且 { 在 } 前面，才是合法JSON
+            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+                String jsonPart = cleanStr.substring(startIndex, endIndex + 1);
+                // 尝试解析 JSON
+                JSONObject parsedObj = JSON.parseObject(jsonPart);
+                actualReply = parsedObj.getString("reply");
+                riskLevel = parsedObj.getString("riskLevel") != null ? parsedObj.getString("riskLevel") : "LOW";
+                tags = parsedObj.getJSONArray("tags");
+            } else {
+                // 如果找不到大括号，说明大模型彻底没按格式输出，直接抛出异常走 catch 兜底
+                throw new Exception("未找到JSON结构");
+            }
+        } catch (Exception e) {
+            System.err.println("【警告】大模型未按JSON格式输出，已触发兜底机制。原输出：" + assistantReply);
+            // 兜底方案：把大模型说的所有废话当成回复，风险默认设为 LOW（或者你可以设为 HIGH 让人工介入）
+            actualReply = assistantReply;
+            riskLevel = "HIGH"; // 既然触发了安全机制没按格式输出，往往是遇到了极端负面情绪，安全起见标记为HIGH
+        }
+        // ======= 核心防御性编程结束 =======
+
+//        //(1).解析大模型返回的特定JSON结构
+//        JSONObject aiAnalysisResult = JSON.parseObject(assistantReply);
+//        String actualReply = aiAnalysisResult.getString("replay");
+//        String riskLevel = aiAnalysisResult.getString("riskLevel");
+//        JSONArray tags = aiAnalysisResult.getJSONArray("tags");
 
 
         // ====================== 8. 把AI的回答也存入对话历史 ======================

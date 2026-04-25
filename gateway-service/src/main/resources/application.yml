@@ -35,3 +35,10 @@ spring:
             - Path=/api/chat/**
           filters:
             - StripPrefix=1
+
+        - id: admin_route
+          uri: lb://admin-service
+          predicates:
+              - Path=/api/admin/**
+          filters:
+              - StripPrefix=1

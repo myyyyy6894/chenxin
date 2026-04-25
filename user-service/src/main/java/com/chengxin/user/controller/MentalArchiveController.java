@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/archive")
@@ -52,5 +54,19 @@ public class MentalArchiveController {
                 .eq(MentalArchive::getUserId, userId)
                 .one();
         return Result.success(archive);
+
+    }
+
+    // 给 Admin 服务调用的统计接口
+    @GetMapping("/statistics/risk")
+    public Result<Object> getRiskStatistics() {
+        // 使用 MyBatis-Plus 的 QueryWrapper 进行分组统计
+        // 相当于 SQL: SELECT current_risk_level, COUNT(*) as count FROM mental_archive GROUP BY current_risk_level
+        List<Map<String, Object>> stats = mentalArchiveService.listMaps(
+                new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<MentalArchive>()
+                        .select("current_risk_level", "count(*) as count")
+                        .groupBy("current_risk_level")
+        );
+        return Result.success(stats);
     }
 }

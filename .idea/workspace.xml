@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1eaa463-9163-45c5-a94c-3968263d3dbe" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/client/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/entity/ChatRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/mapper/ChatRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/ChatRecordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/impl/ChatRecordServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/MentalArchiveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/entity/MentalArchive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/mapper/MentalArchiveMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/service/MentalArchiveService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/service/impl/MentalArchiveServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/client/UserDataClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/controller/AdminDashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/controller/ChatRecordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/ChatServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/ChatServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/client/UserCLient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/adminservice/AdminServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/AdminServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-service/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-service/src/test/java/com/chengxin/adminservice/AdminServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/test/java/com/chengxin/admin/AdminServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/chengxin/auth/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/chengxin/auth/config/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/impl/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/impl/ChatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/common/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/chengxin/common/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/UserProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/MentalArchiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/MentalArchiveController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,41 +54,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "发现新的/更新的数据库配置",
-    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.AdminServiceApplication.executor": "Run",
-    "Spring Boot.AuthServiceApplication.executor": "Run",
-    "Spring Boot.ChatServiceApplication.executor": "Run",
-    "Spring Boot.GatewayServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;发现新的/更新的数据库配置&quot;,
+    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ChatServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -108,7 +103,7 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="AdminServiceApplication" value="FAILED" />
+              <entry key="AdminServiceApplication" value="STOPPED" />
               <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="ChatServiceApplication" value="STOPPED" />
               <entry key="GatewayServiceApplication" value="STOPPED" />
@@ -119,10 +114,10 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.AdminServiceApplication">
     <configuration name="AdminServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="admin-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chengxin.adminservice.AdminServiceApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chengxin.admin.AdminServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,7 +165,8 @@
       <workItem from="1776877055660" duration="1599000" />
       <workItem from="1776949616888" duration="11832000" />
       <workItem from="1777035148306" duration="10281000" />
-      <workItem from="1777045561697" duration="5302000" />
+      <workItem from="1777045561697" duration="5942000" />
+      <workItem from="1777119594260" duration="12607000" />
     </task>
     <servers />
   </component>
