@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     //定义不需要拦截的白名单路径
-    private static final String[] WHITE_LIST = {"/api/auth/login","/api/auth/register",};
+    private static final String[] WHITE_LIST = {"/api/auth/login","/api/auth/register","/api/chat/stream"};
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain){

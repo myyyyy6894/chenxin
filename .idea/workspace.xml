@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1eaa463-9163-45c5-a94c-3968263d3dbe" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/client/UserDataClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/controller/AdminDashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/controller/ChatRecordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/adminservice/AdminServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/main/java/com/chengxin/admin/AdminServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-service/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-service/src/test/java/com/chengxin/adminservice/AdminServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin-service/src/test/java/com/chengxin/admin/AdminServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/chengxin/auth/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/chengxin/auth/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/controller/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/impl/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chengxin/chat/service/impl/ChatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/MentalArchiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/chengxin/user/controller/MentalArchiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/chengxin/gateway/filter/AuthGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/chengxin/gateway/filter/AuthGlobalFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,16 +96,16 @@
             <map>
               <entry key="AdminServiceApplication" value="STOPPED" />
               <entry key="AuthServiceApplication" value="STOPPED" />
-              <entry key="ChatServiceApplication" value="STOPPED" />
+              <entry key="ChatServiceApplication" value="FAILED" />
               <entry key="GatewayServiceApplication" value="STOPPED" />
-              <entry key="UserServiceApplication" value="STOPPED" />
+              <entry key="UserServiceApplication" value="FAILED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AdminServiceApplication">
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
     <configuration name="AdminServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="admin-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.chengxin.admin.AdminServiceApplication" />
@@ -166,7 +157,8 @@
       <workItem from="1776949616888" duration="11832000" />
       <workItem from="1777035148306" duration="10281000" />
       <workItem from="1777045561697" duration="5942000" />
-      <workItem from="1777119594260" duration="12607000" />
+      <workItem from="1777119594260" duration="13794000" />
+      <workItem from="1777201979212" duration="6961000" />
     </task>
     <servers />
   </component>

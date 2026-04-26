@@ -3,7 +3,11 @@ package com.chengxin.chat.controller;
 import com.alibaba.nacos.api.model.v2.Result;
 import com.chengxin.chat.service.impl.ChatServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.awt.*;
 
 
 /**
@@ -37,6 +41,24 @@ public class ChatController {
         String reply = chatService.chatWithAgent(userId,message);
         // 把AI回复包装成统一格式返回给前端
         return Result.success(reply);
+
+    }
+
+    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter streamChat(@RequestHeader("X-User-Id") Long userId,@RequestParam String message) {
+        //创建一个SseEmitter,设置超时时间为0（永不超时）
+        SseEmitter emitter = new SseEmitter(0L);
+
+        //开启一个新线程去异步调用大模型，这样Controller线程就能立刻返回数据给前端
+        new Thread(() -> {
+            try{
+                chatService.chatWithAgentStream(userId,message,emitter);
+            }catch(Exception e){
+                emitter.completeWithError(e);
+            }
+        }).start();
+        return emitter;
+
 
     }
 }
