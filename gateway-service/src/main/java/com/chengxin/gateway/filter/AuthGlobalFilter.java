@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+import java.util.Map;
+
 @Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
@@ -73,5 +76,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     public int getOrder() {
         return 0; // 过滤器执行顺序，越小越先执行
     }
+
+
 
 }

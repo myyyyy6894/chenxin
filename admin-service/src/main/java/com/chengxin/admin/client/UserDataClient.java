@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface UserDataClient {
     @GetMapping("/archive/statistics/risk")
     Result<Object> getRiskStatistics();
+
 }
